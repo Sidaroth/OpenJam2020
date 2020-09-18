@@ -1,6 +1,7 @@
 # Open Jam 2020 
 
-Theme: TBA
+Theme: Airborne
+
 Built using Phaser 3 and our own Boilerplate project: https://github.com/Sidaroth/Phaser3.Boilerplate
 Documentation for Phaser: https://photonstorm.github.io/phaser3-docs/index.html
 
