@@ -6,7 +6,7 @@ import BootScene from 'scenes/Boot';
 import LoadScene from 'scenes/Load';
 import Game from 'scenes/Game';
 import resizeCanvas from 'utils/resizeCanvas';
-import store from './store';
+import store from 'root/store';
 import createMessageBus from 'core/createMessageBus';
 
 const phaserConfig = {

@@ -11,6 +11,7 @@ export default {
         MENU: 'game_menu',
         CREDITS: 'game_credits',
         UI: 'UI',
+        BACKGROUND: 'game_background',
     },
     TEXT_STYLES: {
         DEFAULT: {

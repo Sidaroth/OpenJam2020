@@ -6,6 +6,7 @@ import isScene from 'components/isScene';
 import createState from 'utils/createState';
 import store from 'root/store';
 import hasCamera from 'components/hasCamera';
+import Background from 'scenes/Background';
 import MenuScene from 'scenes/Menu';
 import CreditsScene from 'scenes/Credits';
 import eventConfig from 'configs/eventConfig';
@@ -18,6 +19,7 @@ const Game = function GameFunc() {
     let audioManager;
     let UIContainer;
     let credits;
+    let backgroundScene;
     let menu;
 
     function cameraSetup() {
@@ -39,6 +41,8 @@ const Game = function GameFunc() {
 
     function init() {
         // After assets are loaded.
+        backgroundScene = Background();
+        state.addScene(gameConfig.SCENES.BACKGROUND, backgroundScene.scene, true);
         menu = MenuScene();
         state.addScene(gameConfig.SCENES.MENU, menu.scene, true);
         state.listenOn(menu, eventConfig.MENU.GAME_START, startGame);
@@ -54,10 +58,16 @@ const Game = function GameFunc() {
         cameraSetup();
     }
 
-    function update(time, delta) { }
+    function update(time) {
+        return time;
+    }
 
     function destroy() {
         if (UIContainer) UIContainer.destroy();
+        if (backgroundScene) {
+            backgroundScene.destroy();
+            backgroundScene = null;
+        }
         if (menu) menu.destroy();
     }
 
