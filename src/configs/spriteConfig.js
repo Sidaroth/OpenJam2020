@@ -1,8 +1,8 @@
 export default {
-    BACKGROUND: {
-        KEY: 'background',
-        PATH: 'assets/images/background.png',
-    },
+    // BACKGROUND: {
+    //     KEY: 'background',
+    //     PATH: 'assets/images/background.png',
+    // },
     SPEAKER: {
         KEY: 'speaker',
         PATH: 'assets/images/speaker.png',

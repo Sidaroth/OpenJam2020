@@ -33,8 +33,8 @@ const Game = function GameFunc() {
     }
 
     function create() {
-        background = state.addImage(0, 0, spriteConfig.BACKGROUND.KEY);
-        background.setOrigin(0, 0);
+        // background = state.addImage(0, 0, spriteConfig.BACKGROUND.KEY);
+        // background.setOrigin(0, 0);
         audioManager.playMusic();
         cameraSetup();
 
@@ -45,7 +45,6 @@ const Game = function GameFunc() {
     function update(time, delta) {}
 
     function destroy() {
-        if (background) state.removeChild(spriteConfig.BACKGROUND.KEY);
         if (UIContainer) UIContainer.destroy();
     }
 

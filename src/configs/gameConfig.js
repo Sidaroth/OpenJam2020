@@ -2,7 +2,7 @@ export default {
     GAME: {
         VIEWHEIGHT: 1080,
         VIEWWIDTH: 1920,
-        TITLE: 'Replace Me',
+        TITLE: 'OpenJam 2020',
     },
     SCENES: {
         BOOT: 'game_boot',

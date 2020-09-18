@@ -6,9 +6,5 @@ export default {
         },
     },
     SFX: {
-        COIN: {
-            KEY: 'coin_sfx',
-            PATH: 'assets/audio/coin.wav',
-        },
     },
 };
