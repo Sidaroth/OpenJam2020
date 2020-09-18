@@ -30,7 +30,6 @@ const isScene = function isSceneFunc(state, sceneKey) {
         if (state.update) state.update();
     };
 
-
     scene.destroy = () => {
         if (state.destroy) state.destroy();
     };
@@ -48,6 +47,10 @@ const isScene = function isSceneFunc(state, sceneKey) {
         return scene.add.image(x, y, key, frame);
     }
 
+    function addText(x, y, text, style) {
+        return scene.add.text(x, y, text, style);
+    }
+
     function removeChild(key) {
         const child = scene[key];
         if (child) child.destroy();
@@ -59,6 +62,7 @@ const isScene = function isSceneFunc(state, sceneKey) {
         addScene,
         removeScene,
         addImage,
+        addText,
         removeChild,
     };
 };

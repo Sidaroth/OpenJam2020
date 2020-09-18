@@ -8,13 +8,31 @@ export default {
         BOOT: 'game_boot',
         LOAD: 'game_load',
         GAME: 'game_game',
+        MENU: 'game_menu',
+        CREDITS: 'game_credits',
         UI: 'UI',
     },
-    DEFAULT_TEXT_STYLE: {
-        font: 'Roboto',
-        fontSize: 20,
-        fill: '#ffffff',
-        smoothed: false,
+    TEXT_STYLES: {
+        DEFAULT: {
+            font: 'Roboto',
+            fontSize: 20,
+            fill: '#ffffff',
+            smoothed: false,
+        },
+        TITLE_TEXT: {
+            font: '72px Arial',
+            fill: '#eeeeee',
+            align: 'center',
+            stroke: '#000000',
+            strokeThickness: 4,
+        },
+        MENU_TEXT: {
+            font: '48px Arial',
+            fill: '#eeeeee',
+            align: 'center',
+            stroke: '#000000',
+            strokeThickness: 4,
+        },
     },
     UI_DEFAULT: {
         tint: 0xaaaaaa,

@@ -11,4 +11,8 @@ export default {
         KEY: 'speaker_off',
         PATH: 'assets/images/speaker-off.png',
     },
+    MENU_BACKGROUND: {
+        KEY: 'menu_background',
+        PATH: 'https://cdn.sidaroth.no/openjam2020/flowerBG.jpg',
+    },
 };

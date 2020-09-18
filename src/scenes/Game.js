@@ -8,6 +8,7 @@ import isScene from 'components/isScene';
 import createState from 'utils/createState';
 import store from 'root/store';
 import hasCamera from 'components/hasCamera';
+import MenuScene from 'scenes/Menu';
 
 /**
  * Responsible for delegating the various levels, holding the various core systems and such.
@@ -16,7 +17,7 @@ const Game = function GameFunc() {
     const state = {};
     let audioManager;
     let UIContainer;
-    let background;
+    let menu;
 
     function cameraSetup() {
         state.setViewport(0, 0, gameConfig.GAME.VIEWWIDTH, gameConfig.GAME.VIEWHEIGHT);
@@ -26,6 +27,8 @@ const Game = function GameFunc() {
 
     function init() {
         // After assets are loaded.
+        menu = MenuScene();
+        state.addScene(gameConfig.SCENES.MENU, menu.scene, true);
         UIContainer = UI();
         state.addScene(gameConfig.SCENES.UI, UIContainer.scene, true);
         audioManager = AudioManager(UIContainer.scene);
@@ -33,8 +36,6 @@ const Game = function GameFunc() {
     }
 
     function create() {
-        // background = state.addImage(0, 0, spriteConfig.BACKGROUND.KEY);
-        // background.setOrigin(0, 0);
         audioManager.playMusic();
         cameraSetup();
     }
@@ -43,6 +44,7 @@ const Game = function GameFunc() {
 
     function destroy() {
         if (UIContainer) UIContainer.destroy();
+        if (menu) menu.destroy();
     }
 
     const localState = {
