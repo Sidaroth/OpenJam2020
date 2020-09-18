@@ -8,7 +8,7 @@ const CreditsScene = function CreditsSceneFunc() {
 
     function create() {
         if (!creditText) {
-            creditText = state.add.text(10, 20, 'Credits\nSidaroth\nGarlov\nKjetilgr', gameConfig.TEXT_STYLES.DEFAULT);
+            creditText = state.addText(gameConfig.GAME.VIEWWIDTH / 2, gameConfig.GAME.VIEWHEIGHT / 3, 'Credits\nSidaroth\nGarlov\nKjetilgr', gameConfig.TEXT_STYLES.DEFAULT);
         }
     }
 
@@ -22,3 +22,5 @@ const CreditsScene = function CreditsSceneFunc() {
         isScene: isScene(state, gameConfig.SCENES.CREDITS),
     });
 };
+
+export default CreditsScene;

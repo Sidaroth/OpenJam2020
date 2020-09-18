@@ -14,9 +14,10 @@ export default {
     },
     TEXT_STYLES: {
         DEFAULT: {
-            font: 'Roboto',
-            fontSize: 20,
+            font: '20px Roboto',
             fill: '#ffffff',
+            align: 'center',
+            stroke: '#000000',
             smoothed: false,
         },
         TITLE_TEXT: {

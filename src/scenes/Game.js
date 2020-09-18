@@ -7,6 +7,8 @@ import createState from 'utils/createState';
 import store from 'root/store';
 import hasCamera from 'components/hasCamera';
 import MenuScene from 'scenes/Menu';
+import CreditsScene from 'scenes/Credits';
+import eventConfig from 'configs/eventConfig';
 
 /**
  * Responsible for delegating the various levels, holding the various core systems and such.
@@ -15,6 +17,7 @@ const Game = function GameFunc() {
     const state = {};
     let audioManager;
     let UIContainer;
+    let credits;
     let menu;
 
     function cameraSetup() {
@@ -22,11 +25,24 @@ const Game = function GameFunc() {
         state.setZoom(0.8);
     }
 
+    function startGame() {
+        console.log('Start game');
+    }
+
+    function openCredits() {
+        console.log('Open credits');
+        credits = CreditsScene();
+        state.addScene(gameConfig.SCENES.CREDITS, credits.scene, true);
+        state.removeScene(menu.scene);
+    }
+
 
     function init() {
         // After assets are loaded.
         menu = MenuScene();
         state.addScene(gameConfig.SCENES.MENU, menu.scene, true);
+        state.listenOn(menu, eventConfig.MENU.GAME_START, startGame);
+        state.listenOn(menu, eventConfig.MENU.CREDITS_OPEN, openCredits);
         UIContainer = UI();
         state.addScene(gameConfig.SCENES.UI, UIContainer.scene, true);
         audioManager = AudioManager(UIContainer.scene);

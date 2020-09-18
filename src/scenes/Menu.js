@@ -3,6 +3,9 @@ import isScene from 'components/isScene';
 import createState from 'utils/createState';
 import spriteConfig from 'configs/spriteConfig';
 import createButton from 'entities/createButton';
+import canListen from 'components/events/canListen';
+import canEmit from 'components/events/canEmit';
+import eventConfig from 'configs/eventConfig';
 
 const MenuScene = function MenuSceneFunc() {
     const state = {};
@@ -31,12 +34,18 @@ const MenuScene = function MenuSceneFunc() {
                 position: { x: gameConfig.GAME.VIEWWIDTH / 2, y: gameConfig.GAME.VIEWHEIGHT / 2 },
                 text: 'Start game',
             });
+            state.listenOn(startGame, eventConfig.BUTTON.CLICK, () => {
+                state.emit(eventConfig.MENU.GAME_START);
+            })
         }
         if (!credits) {
             credits = createButton(state.scene, {
                 size: gameConfig.BUTTON.DEFAULT_SIZE,
                 position: { x: gameConfig.GAME.VIEWWIDTH / 2, y: gameConfig.GAME.VIEWHEIGHT / 2 + 150 },
                 text: 'Credits',
+            });
+            state.listenOn(credits, eventConfig.BUTTON.CLICK, () => {
+                state.emit(eventConfig.MENU.CREDITS_OPEN);
             });
         }
     }
@@ -48,6 +57,8 @@ const MenuScene = function MenuSceneFunc() {
 
     return createState('Menu', state, {
         localState,
+        canListen: canListen(state),
+        canEmit: canEmit(state),
         isScene: isScene(state, gameConfig.SCENES.MENU),
     });
 };
