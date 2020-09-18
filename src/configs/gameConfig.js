@@ -12,6 +12,7 @@ export default {
         CREDITS: 'game_credits',
         UI: 'UI',
         BACKGROUND: 'game_background',
+        LEVEL1: 'game_level1',
     },
     TEXT_STYLES: {
         DEFAULT: {
@@ -40,7 +41,7 @@ export default {
         DEFAULT_SIZE: {
             w: 350,
             h: 100,
-        }
+        },
     },
     UI_DEFAULT: {
         tint: 0xaaaaaa,
