@@ -3,6 +3,7 @@ import canEmit from 'components/events/canEmit';
 import hasPosition from 'components/hasPosition';
 import createState from 'utils/createState';
 import hasAudio from 'components/hasAudio';
+import hasPhysicsBody from 'components/hasPhysicsBody';
 
 const createPlayer = function createPlayerFunc() {
     // variables and functions here are private unless listed below in localState.
@@ -26,6 +27,7 @@ const createPlayer = function createPlayerFunc() {
         hasPosition: hasPosition(state),
         hasAudio: hasAudio(state),
         canEmit: canEmit(state),
+        hasPhysicsBody: hasPhysicsBody(state),
     });
 };
 
