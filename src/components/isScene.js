@@ -26,8 +26,8 @@ const isScene = function isSceneFunc(state, sceneKey) {
         if (state.create) state.create();
     };
 
-    scene.update = () => {
-        if (state.update) state.update();
+    scene.update = (time, delta) => {
+        if (state.update) state.update({ runTime: time, delta });
     };
 
 
