@@ -5,16 +5,19 @@ import pipe from 'utils/pipe';
 import eventConfig from 'configs/eventConfig';
 import createState from 'utils/createState';
 
-const createButton = function createButtonFunc(parent) {
+const createButton = function createButtonFunc(parent, buttonConfig = {}) {
     const state = {};
     const parentState = parent;
 
     let background;
     let zone;
-    let text = 'My Button';
+    let text = buttonConfig.text ? buttonConfig.text : 'Button';
     let textElem;
 
-    function init() {
+    function __constructor() {
+        if (buttonConfig.position) state.setPosition(buttonConfig.position);
+        if (buttonConfig.size) state.setSize(buttonConfig.size);
+
         state.refresh();
     }
 
@@ -24,7 +27,7 @@ const createButton = function createButtonFunc(parent) {
     }
 
     function onClick(e) {
-        state.emit(eventConfig.EVENTS.BUTTON.CLICK, e);
+        state.emit(eventConfig.BUTTON.CLICK, e);
     }
 
     function refresh() {
@@ -76,7 +79,7 @@ const createButton = function createButtonFunc(parent) {
     const localState = {
         // props
         // methods
-        init,
+        __constructor,
         setText,
         refresh,
         destroy,

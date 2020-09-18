@@ -1,7 +1,5 @@
 import gameConfig from 'configs/gameConfig';
-import spriteConfig from 'configs/spriteConfig';
 import AudioManager from 'core/createAudioManager';
-import createPlayer from 'entities/createPlayer';
 import UI from 'scenes/UI';
 import canListen from 'components/events/canListen';
 import isScene from 'components/isScene';
@@ -40,7 +38,7 @@ const Game = function GameFunc() {
         cameraSetup();
     }
 
-    function update(time, delta) {}
+    function update(time, delta) { }
 
     function destroy() {
         if (UIContainer) UIContainer.destroy();

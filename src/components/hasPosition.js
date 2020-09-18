@@ -1,33 +1,34 @@
+import Vector from 'utils/math/Vector';
+
 const hasPosition = function hasPositionFunc(state) {
-    let x = 0;
-    let y = 0;
+    const pos = new Vector();
 
     function setPosition({ x: xp, y: yp }) {
-        x = xp;
-        y = yp;
-        return { x, y };
+        pos.x = xp;
+        pos.y = yp;
+        return pos.clone();
     }
 
     function setX(xp) {
-        state.setPosition({ x: xp, y });
+        state.setPosition(new Vector(xp, pos.y));
         return xp;
     }
 
     function setY(yp) {
-        state.setPosition({ x, y: yp });
+        state.setPosition(new Vector(pos.x, yp));
         return yp;
     }
 
     function getPosition() {
-        return { x, y };
+        return pos.clone();
     }
 
     function getX() {
-        return x;
+        return pos.x;
     }
 
     function getY() {
-        return y;
+        return pos.y;
     }
 
     return {
