@@ -15,7 +15,7 @@ export default {
     },
     TEXT_STYLES: {
         DEFAULT: {
-            font: '20px Roboto',
+            font: '64px Roboto',
             fill: '#ffffff',
             align: 'center',
             stroke: '#000000',

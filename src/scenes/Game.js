@@ -35,18 +35,27 @@ const Game = function GameFunc() {
         console.log('Open credits');
         credits = CreditsScene();
         state.addScene(gameConfig.SCENES.CREDITS, credits.scene, true);
+        state.listenOn(credits, eventConfig.MENU.CREDITS_CLOSE, state.closeCredits);
         state.removeScene(menu.scene);
     }
 
+    function openMenu() {
+        menu = MenuScene();
+        state.addScene(gameConfig.SCENES.MENU, menu.scene, true);
+        state.listenOn(menu, eventConfig.MENU.GAME_START, startGame);
+        state.listenOn(menu, eventConfig.MENU.CREDITS_OPEN, openCredits);
+    }
+
+    function closeCredits() {
+        openMenu();
+        state.removeScene(credits.scene);
+    }
 
     function init() {
         // After assets are loaded.
         backgroundScene = Background();
         state.addScene(gameConfig.SCENES.BACKGROUND, backgroundScene.scene, true);
-        menu = MenuScene();
-        state.addScene(gameConfig.SCENES.MENU, menu.scene, true);
-        state.listenOn(menu, eventConfig.MENU.GAME_START, startGame);
-        state.listenOn(menu, eventConfig.MENU.CREDITS_OPEN, openCredits);
+        openMenu();
         UIContainer = UI();
         state.addScene(gameConfig.SCENES.UI, UIContainer.scene, true);
         audioManager = AudioManager(UIContainer.scene);
@@ -69,11 +78,13 @@ const Game = function GameFunc() {
             backgroundScene = null;
         }
         if (menu) menu.destroy();
+        if (credits) credits.destroy();
     }
 
     const localState = {
         // props
         // methods
+        closeCredits,
         init,
         create,
         update,

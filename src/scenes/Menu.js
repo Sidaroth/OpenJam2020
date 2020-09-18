@@ -36,7 +36,7 @@ const MenuScene = function MenuSceneFunc() {
             });
             state.listenOn(startGame, eventConfig.BUTTON.CLICK, () => {
                 state.emit(eventConfig.MENU.GAME_START);
-            })
+            });
         }
         if (!credits) {
             credits = createButton(state.scene, {
@@ -50,9 +50,14 @@ const MenuScene = function MenuSceneFunc() {
         }
     }
 
+    function destroy() {
+        if (menuBackground) menuBackground.destroy();
+    }
+
     const localState = {
         // methods
         create,
+        destroy,
     };
 
     return createState('Menu', state, {
