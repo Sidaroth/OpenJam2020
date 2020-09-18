@@ -1,7 +1,5 @@
 import gameConfig from 'configs/gameConfig';
-import spriteConfig from 'configs/spriteConfig';
 import AudioManager from 'core/createAudioManager';
-import createPlayer from 'entities/createPlayer';
 import UI from 'scenes/UI';
 import canListen from 'components/events/canListen';
 import isScene from 'components/isScene';
@@ -16,7 +14,6 @@ const Game = function GameFunc() {
     const state = {};
     let audioManager;
     let UIContainer;
-    let background;
 
     function cameraSetup() {
         state.setViewport(0, 0, gameConfig.GAME.VIEWWIDTH, gameConfig.GAME.VIEWHEIGHT);
@@ -33,8 +30,6 @@ const Game = function GameFunc() {
     }
 
     function create() {
-        // background = state.addImage(0, 0, spriteConfig.BACKGROUND.KEY);
-        // background.setOrigin(0, 0);
         audioManager.playMusic();
         cameraSetup();
     }

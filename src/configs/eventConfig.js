@@ -1,7 +1,8 @@
 export default {
-    EVENTS: {
-        GAME: {
-            STARTED: 'game started',
-        },
+    GAME: {
+        STARTED: 'game started',
+    },
+    BUTTON: {
+        CLICK: 'button click',
     },
 };
