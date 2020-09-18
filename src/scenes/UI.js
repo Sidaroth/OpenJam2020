@@ -1,5 +1,5 @@
+// import * as dat from 'dat.gui';
 import Stats from 'stats-js';
-import * as dat from 'dat.gui';
 import gameConfig from 'configs/gameConfig';
 import isScene from 'components/isScene';
 import createState from 'utils/createState';
@@ -12,6 +12,19 @@ const UI = function UIFunc() {
     const state = {};
     let gui;
     let stats;
+
+    // function setupDatGui() {
+    //     gui = new dat.GUI();
+    //     gui.addFolder('Test folder');
+
+    //     state.guiData = {
+    //         name: 'name',
+    //     };
+    //     const guiController = gui.add(state.guiData, 'name');
+    //     guiController.onFinishChange((name) => {
+    //         console.log(name);
+    //     });
+    // }
 
     function setupPerformanceStats() {
         stats = new Stats();
@@ -32,21 +45,8 @@ const UI = function UIFunc() {
         });
     }
 
-    function setupDatGui() {
-        gui = new dat.GUI();
-        gui.addFolder('Test folder');
-
-        state.guiData = {
-            name: 'name',
-        };
-        const guiController = gui.add(state.guiData, 'name');
-        guiController.onFinishChange((name) => {
-            console.log(name);
-        });
-    }
-
     function create() {
-        setupDatGui();
+        // setupDatGui();
         setupPerformanceStats();
     }
 

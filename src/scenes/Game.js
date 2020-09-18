@@ -6,10 +6,10 @@ import isScene from 'components/isScene';
 import createState from 'utils/createState';
 import store from 'root/store';
 import hasCamera from 'components/hasCamera';
-import Background from 'scenes/Background';
 import MenuScene from 'scenes/Menu';
 import CreditsScene from 'scenes/Credits';
 import eventConfig from 'configs/eventConfig';
+import Level1 from './Level1';
 
 /**
  * Responsible for delegating the various levels, holding the various core systems and such.
@@ -19,8 +19,8 @@ const Game = function GameFunc() {
     let audioManager;
     let UIContainer;
     let credits;
-    let backgroundScene;
     let menu;
+    let level1;
 
     function cameraSetup() {
         state.setViewport(0, 0, gameConfig.GAME.VIEWWIDTH, gameConfig.GAME.VIEWHEIGHT);
@@ -28,27 +28,27 @@ const Game = function GameFunc() {
     }
 
     function startGame() {
-        console.log('Start game');
+        level1 = Level1();
+        state.addScene(gameConfig.SCENES.LEVEL1, level1.scene, true);
+        state.removeScene(menu.scene);
     }
 
     function openCredits() {
-        console.log('Open credits');
         credits = CreditsScene();
         state.addScene(gameConfig.SCENES.CREDITS, credits.scene, true);
         state.removeScene(menu.scene);
     }
 
-
     function init() {
         // After assets are loaded.
-        backgroundScene = Background();
-        state.addScene(gameConfig.SCENES.BACKGROUND, backgroundScene.scene, true);
         menu = MenuScene();
         state.addScene(gameConfig.SCENES.MENU, menu.scene, true);
         state.listenOn(menu, eventConfig.MENU.GAME_START, startGame);
         state.listenOn(menu, eventConfig.MENU.CREDITS_OPEN, openCredits);
+
         UIContainer = UI();
         state.addScene(gameConfig.SCENES.UI, UIContainer.scene, true);
+
         audioManager = AudioManager(UIContainer.scene);
         store.audioManager = audioManager;
     }
@@ -64,10 +64,6 @@ const Game = function GameFunc() {
 
     function destroy() {
         if (UIContainer) UIContainer.destroy();
-        if (backgroundScene) {
-            backgroundScene.destroy();
-            backgroundScene = null;
-        }
         if (menu) menu.destroy();
     }
 
