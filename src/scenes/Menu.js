@@ -2,6 +2,7 @@ import gameConfig from 'configs/gameConfig';
 import isScene from 'components/isScene';
 import createState from 'utils/createState';
 import spriteConfig from 'configs/spriteConfig';
+import createButton from 'entities/createButton';
 
 const MenuScene = function MenuSceneFunc() {
     const state = {};
@@ -25,12 +26,18 @@ const MenuScene = function MenuSceneFunc() {
             titleText.x -= titleText.width / 2;
         }
         if (!startGame) {
-            startGame = state.addText(gameConfig.GAME.VIEWWIDTH / 2, 300, 'Start Game', gameConfig.TEXT_STYLES.MENU_TEXT);
-            startGame.x -= startGame.width / 2;
+            startGame = createButton(state.scene, {
+                size: gameConfig.BUTTON.DEFAULT_SIZE,
+                position: { x: gameConfig.GAME.VIEWWIDTH / 2, y: gameConfig.GAME.VIEWHEIGHT / 2 },
+                text: 'Start game',
+            });
         }
         if (!credits) {
-            credits = state.addText(gameConfig.GAME.VIEWWIDTH / 2, 800, 'Credits', gameConfig.TEXT_STYLES.MENU_TEXT);
-            credits.x -= credits.width / 2;
+            credits = createButton(state.scene, {
+                size: gameConfig.BUTTON.DEFAULT_SIZE,
+                position: { x: gameConfig.GAME.VIEWWIDTH / 2, y: gameConfig.GAME.VIEWHEIGHT / 2 + 150 },
+                text: 'Credits',
+            });
         }
     }
 

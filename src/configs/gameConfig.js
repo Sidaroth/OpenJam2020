@@ -26,13 +26,19 @@ export default {
             stroke: '#000000',
             strokeThickness: 4,
         },
-        MENU_TEXT: {
-            font: '48px Arial',
+        BUTTON_TEXT: {
+            font: '64px Arial',
             fill: '#eeeeee',
             align: 'center',
             stroke: '#000000',
             strokeThickness: 4,
         },
+    },
+    BUTTON: {
+        DEFAULT_SIZE: {
+            w: 350,
+            h: 100,
+        }
     },
     UI_DEFAULT: {
         tint: 0xaaaaaa,

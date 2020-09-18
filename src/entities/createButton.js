@@ -4,19 +4,27 @@ import hasPosition from 'components/hasPosition';
 import pipe from 'utils/pipe';
 import eventConfig from 'configs/eventConfig';
 import createState from 'utils/createState';
+import gameConfig from 'configs/gameConfig';
 
 const createButton = function createButtonFunc(parent, buttonConfig = {}) {
     const state = {};
     const parentState = parent;
+    const autoCenter = buttonConfig.autoCenter !== undefined ? buttonConfig.autoCenter : true;
+    const textStyle = buttonConfig.textStyle ? buttonConfig.textStyle : gameConfig.TEXT_STYLES.BUTTON_TEXT;
 
     let background;
     let zone;
     let text = buttonConfig.text ? buttonConfig.text : 'Button';
     let textElem;
 
+
     function __constructor() {
         if (buttonConfig.position) state.setPosition(buttonConfig.position);
         if (buttonConfig.size) state.setSize(buttonConfig.size);
+        if (autoCenter) {
+            const newpos = { x: state.getX() - state.getWidth() / 2, y: state.getY() - state.getHeight() / 2 };
+            state.setPosition(newpos);
+        }
 
         state.refresh();
     }
@@ -47,11 +55,7 @@ const createButton = function createButtonFunc(parent, buttonConfig = {}) {
         zone.setInteractive();
 
         if (!textElem) {
-            textElem = parent.add.text(0, 0, '', {
-                font: '64px Arial',
-                fill: '#eeeeee',
-                align: 'center',
-            });
+            textElem = parent.add.text(0, 0, '', textStyle);
         }
 
         textElem.text = `${text}`;
