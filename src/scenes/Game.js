@@ -37,9 +37,6 @@ const Game = function GameFunc() {
         // background.setOrigin(0, 0);
         audioManager.playMusic();
         cameraSetup();
-
-        const player = createPlayer();
-        console.log(player);
     }
 
     function update(time, delta) {}
