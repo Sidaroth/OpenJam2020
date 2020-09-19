@@ -1,3 +1,5 @@
-const store = {};
+const store = {
+    currentLevel: null,
+};
 
 export default store;
