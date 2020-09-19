@@ -17,8 +17,8 @@ const Level1 = function Level1Func() {
     let treeManager;
     let timeSinceLastUpdate = Infinity;
 
-    const widthRegions = 5;
-    const heightRegions = 5;
+    const widthRegions = 15;
+    const heightRegions = 8;
     const regions = [];
     const levelName = 'Level 1';
     const lifetimeUpdateThreshold = 100;
@@ -28,7 +28,7 @@ const Level1 = function Level1Func() {
         state.addScene(gameConfig.SCENES.BACKGROUND, background.scene, true);
         state.sceneManager.sendToBack(gameConfig.SCENES.BACKGROUND);
         store.currentLevel = state;
-        store.speed = 0.25;
+        store.speed = 0.125;
     }
 
     // hook into phasers scene lifecycle.
