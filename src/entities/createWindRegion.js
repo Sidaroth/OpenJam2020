@@ -29,7 +29,7 @@ const createWindRegion = function createWindRegionFunc() {
         const statePos = state.getPosition();
 
         return entityPos.x >= statePos.x && entityPos.x < statePos.x + state.getWidth() &&
-        entityPos.y >= statePos.y && entityPos.y < statePos.y + state.getHeight();
+            entityPos.y >= statePos.y && entityPos.y < statePos.y + state.getHeight();
     }
 
     function drawWindRegion() {
@@ -75,7 +75,6 @@ const createWindRegion = function createWindRegionFunc() {
         if (isWithinRegion(store.seed)) {
             store.seed.applyForce(windForce);
         }
-
         return time;
     }
 

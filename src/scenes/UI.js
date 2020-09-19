@@ -13,6 +13,8 @@ const UI = function UIFunc() {
     const state = {};
     let gui;
     let stats;
+    let currentLevelText;
+    let currentLifetimeText;
 
     // function setupDatGui() {
     //     gui = new dat.GUI();
@@ -46,9 +48,29 @@ const UI = function UIFunc() {
         });
     }
 
+    function setCurrentLevelText(text) {
+        currentLevelText.text = text;
+        currentLevelText.visible = true;
+    }
+
+    function updateLifetimeText(text) {
+        currentLifetimeText.text = text;
+        currentLifetimeText.visible = true;
+    }
+
     function create() {
         // setupDatGui();
-        setupPerformanceStats();
+        // setupPerformanceStats();
+
+        if (!currentLevelText) {
+            currentLevelText = state.addText(20, 20, 'Current level', gameConfig.TEXT_STYLES.UI_TEXT);
+            currentLevelText.visible = false;
+        }
+        if (!currentLifetimeText) {
+            currentLifetimeText = state.addText(20, 50, '', gameConfig.TEXT_STYLES.UI_TEXT)
+            currentLifetimeText.visible = false;
+        }
+
     }
 
     function destroy() {
@@ -59,6 +81,8 @@ const UI = function UIFunc() {
 
     const localState = {
         // methods
+        setCurrentLevelText,
+        updateLifetimeText,
         create,
         destroy,
     };

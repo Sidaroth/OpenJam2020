@@ -2,7 +2,7 @@ export default {
     GAME: {
         VIEWHEIGHT: 1080,
         VIEWWIDTH: 1920,
-        TITLE: 'OpenJam 2020',
+        TITLE: 'Open Jam 2020',
     },
     SCENES: {
         BOOT: 'game_boot',
@@ -35,6 +35,12 @@ export default {
             align: 'center',
             stroke: '#000000',
             strokeThickness: 4,
+        },
+        UI_TEXT: {
+            font: '32px Arial',
+            fill: '#eeeeee',
+            align: 'center',
+            stroke: '#000000',
         },
     },
     MAX_SEED_VELOCITY: 4,

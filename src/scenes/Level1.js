@@ -6,7 +6,7 @@ import canEmit from 'components/events/canEmit';
 import Background from './Background';
 import createSeed from 'entities/createSeed';
 import store from 'root/store';
-import createTree from 'entities/createTree';
+import createTreeManager from 'core/createTreeManager';
 import createWindRegion from 'entities/createWindRegion';
 
 const Level1 = function Level1Func() {
@@ -14,11 +14,14 @@ const Level1 = function Level1Func() {
 
     let background;
     let seed;
-    let tree;
+    let treeManager;
+    let timeSinceLastUpdate = Infinity;
 
     const widthRegions = 5;
     const heightRegions = 5;
     const regions = [];
+    const levelName = 'Level 1';
+    const lifetimeUpdateThreshold = 100;
 
     function init() {
         background = Background();
@@ -32,7 +35,7 @@ const Level1 = function Level1Func() {
     function create() {
         seed = createSeed();
         store.seed = seed;
-        tree = createTree();
+        treeManager = createTreeManager();
 
         for (let i = 0; i < heightRegions; i += 1) {
             for (let j = 0; j < widthRegions; j += 1) {
@@ -48,13 +51,22 @@ const Level1 = function Level1Func() {
             region.moveToBack();
             regions.push(region);
         }
+        store.ui.setCurrentLevelText(levelName);
+    }
+
+    function updateLifetime(time) {
+        timeSinceLastUpdate += time.delta;
+        if (timeSinceLastUpdate >= lifetimeUpdateThreshold) {
+            const timeInSeconds = seed.getLifetime() / 1000;
+            store.ui.updateLifetimeText(timeInSeconds.toFixed(2));
+        }
     }
 
     function update(time) {
         seed.update(time);
-        tree.update(time);
+        updateLifetime(time);
+        treeManager.update(time);
         regions.forEach(region => region.update(time));
-
         return time;
     }
 
