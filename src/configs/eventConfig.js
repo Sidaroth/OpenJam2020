@@ -9,5 +9,5 @@ export default {
         GAME_START: 'menu game start',
         CREDITS_OPEN: 'menu credits open',
         CREDITS_CLOSE: 'menu credits close',
-    }
+    },
 };

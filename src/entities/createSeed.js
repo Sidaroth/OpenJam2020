@@ -8,6 +8,7 @@ import hasSprite from 'components/entities/hasSprite';
 import gameConfig from 'configs/gameConfig';
 import spriteConfig from 'configs/spriteConfig';
 import store from 'root/store';
+import hasLifetime from 'components/entities/hasLifetime';
 
 const createSeed = function createPlayerFunc() {
     const state = {};
@@ -30,6 +31,7 @@ const createSeed = function createPlayerFunc() {
         canEmit: canEmit(state),
         hasPhysicsBody: hasPhysicsBody(state),
         hasSprite: hasSprite(state),
+        hasLifetime: hasLifetime(state),
     });
 };
 

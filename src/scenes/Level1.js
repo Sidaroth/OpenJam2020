@@ -15,10 +15,13 @@ const Level1 = function Level1Func() {
     let background;
     let seed;
     let treeManager;
+    let timeSinceLastUpdate = Infinity;
 
     const widthRegions = 4;
     const heightRegions = 4;
     const regions = [];
+    const levelName = 'Level 1';
+    const lifetimeUpdateThreshold = 100;
 
     function init() {
         background = Background();
@@ -42,12 +45,22 @@ const Level1 = function Level1Func() {
                 regions.push(region);
             }
         }
+        store.ui.setCurrentLevelText(levelName);
+    }
+
+    function updateLifetime(time) {
+        timeSinceLastUpdate += time.delta;
+        if (timeSinceLastUpdate >= lifetimeUpdateThreshold) {
+            const timeInSeconds = seed.getLifetime() / 1000;
+            store.ui.updateLifetimeText(timeInSeconds.toFixed(2));
+        }
     }
 
     function update(time) {
-        seed.update(time.delta);
+        seed.update(time);
+        updateLifetime(time);
         treeManager.update(time);
-        regions.forEach(region => region.update(time.delta));
+        regions.forEach(region => region.update(time));
         return time;
     }
 
