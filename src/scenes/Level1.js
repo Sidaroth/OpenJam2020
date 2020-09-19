@@ -6,14 +6,14 @@ import canEmit from 'components/events/canEmit';
 import Background from './Background';
 import createSeed from 'entities/createSeed';
 import store from 'root/store';
-import createTree from 'entities/createTree';
+import createTreeManager from 'core/createTreeManager';
 
 const Level1 = function Level1Func() {
     const state = {};
 
     let background;
     let seed;
-    let tree;
+    let treeManager;
 
     function init() {
         background = Background();
@@ -26,12 +26,12 @@ const Level1 = function Level1Func() {
     // hook into phasers scene lifecycle.
     function create() {
         seed = createSeed();
-        tree = createTree();
+        treeManager = createTreeManager();
     }
 
     function update(time) {
         seed.update(time.delta);
-        tree.update(time);
+        treeManager.update(time);
         return time;
     }
 
