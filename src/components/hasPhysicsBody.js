@@ -1,3 +1,4 @@
+import gameConfig from 'configs/gameConfig';
 import Vector from 'utils/math/Vector';
 
 const hasPhysicsBody = function hasPhysicsBodyFunc(state) {
@@ -18,12 +19,15 @@ const hasPhysicsBody = function hasPhysicsBodyFunc(state) {
         state.acceleration.add(drag);
     }
 
-    function update(delta) {
-        state.setPosition(state.getPosition().add(Vector.multiply(state.velocity, delta)));
+    function update(time) {
+        state.setPosition(state.getPosition().add(Vector.multiply(state.velocity, time.delta)));
         state.velocity.add(state.acceleration);
+
+        state.velocity.limit(gameConfig.MAX_SEED_VELOCITY);
 
         // because force application is additive each frame, we have to zero inbetween updates.
         state.acceleration.zero();
+        return time;
     }
 
     function applyForce(force) {

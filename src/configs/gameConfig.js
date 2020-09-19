@@ -37,6 +37,7 @@ export default {
             strokeThickness: 4,
         },
     },
+    MAX_SEED_VELOCITY: 4,
     BUTTON: {
         DEFAULT_SIZE: {
             w: 350,

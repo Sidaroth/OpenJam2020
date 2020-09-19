@@ -3,6 +3,7 @@ import Stats from 'stats-js';
 import gameConfig from 'configs/gameConfig';
 import isScene from 'components/isScene';
 import createState from 'utils/createState';
+import * as Phaser from 'phaser';
 
 /**
  * Layer/Scene for UI elements.
