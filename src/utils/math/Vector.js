@@ -48,7 +48,7 @@ export default class Vector {
     // Calculates the Euclidean distance between two points (vectors)
     dist(vector) {
         return vector
-            .copy()
+            .clone()
             .sub(this)
             .getLength();
     }

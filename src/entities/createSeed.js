@@ -9,6 +9,7 @@ import gameConfig from 'configs/gameConfig';
 import spriteConfig from 'configs/spriteConfig';
 import store from 'root/store';
 import hasLifetime from 'components/entities/hasLifetime';
+import hasCollider from 'components/entities/hasCollider';
 
 const createSeed = function createPlayerFunc() {
     const state = {};
@@ -32,6 +33,7 @@ const createSeed = function createPlayerFunc() {
         hasPhysicsBody: hasPhysicsBody(state),
         hasSprite: hasSprite(state),
         hasLifetime: hasLifetime(state),
+        hasCollider: hasCollider(state, gameConfig.COLLIDERS.PLAYER),
     });
 };
 
