@@ -6,12 +6,42 @@ import getRandomInt from 'utils/math/getRandomInt';
 
 const createTreeManager = function createTreeManagerFunc() {
     const state = {};
+
+    let topBorder = [];
+    let bottomBorder = [];
+
     let treeClusters = [];
     const DISTANCE_BETWEEN_CLUSTERS = 300;
     let distanceSinceLastCluster = 0;
 
     function __constructor() {
+        // top
+        let x = 0;
+        while (x < gameConfig.GAME.VIEWWIDTH + 100) {
+            const tree = createTree();
+            const treeSize = tree.getSprite().width;
+            x += treeSize / 2;
+            tree.setPosition({
+                y: 10,
+                x,
+            });
+            x += treeSize / 2;
+            topBorder.push(tree);
+        }
 
+        // bottom
+        x = 0;
+        while (x < gameConfig.GAME.VIEWWIDTH + 100) {
+            const tree = createTree();
+            const treeSize = tree.getSprite().width;
+            x += treeSize / 2;
+            tree.setPosition({
+                y: gameConfig.GAME.VIEWHEIGHT - 10,
+                x,
+            });
+            x += treeSize / 2;
+            bottomBorder.push(tree);
+        }
     }
 
     function createCluster() {
@@ -69,6 +99,24 @@ const createTreeManager = function createTreeManagerFunc() {
         }
     }
 
+    function parallaxBorder(border, delta) {
+        border.forEach((tree) => {
+            if (tree.getX() < -(tree.getSprite().width / 2)) {
+                const rightMostTree = border.reduce((lastTile, t) => {
+                    if (!lastTile) {
+                        return t;
+                    }
+                    if (lastTile.getX() < t.getX()) {
+                        return t;
+                    }
+                    return lastTile;
+                }, null);
+                tree.setX(rightMostTree.getX() + rightMostTree.getSprite().width / 2 + tree.getSprite().width / 2);
+            }
+            tree.setX(tree.getX() - store.speed * delta);
+        });
+    }
+
     function update(time) {
         distanceSinceLastCluster += time.delta * store.speed;
         if (distanceSinceLastCluster > DISTANCE_BETWEEN_CLUSTERS) {
@@ -84,6 +132,8 @@ const createTreeManager = function createTreeManagerFunc() {
         });
 
         cleanupTrees();
+        parallaxBorder(topBorder, time.delta);
+        parallaxBorder(bottomBorder, time.delta);
 
         return time;
     }
@@ -96,6 +146,16 @@ const createTreeManager = function createTreeManagerFunc() {
             treeCluster.trees = [];
         });
         treeClusters = [];
+
+        topBorder.forEach((tree) => {
+            tree.destroy();
+        });
+        topBorder = [];
+
+        bottomBorder.forEach((tree) => {
+            tree.destroy();
+        });
+        bottomBorder = [];
     }
 
     const localState = {
