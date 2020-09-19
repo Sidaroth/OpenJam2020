@@ -17,7 +17,7 @@ const createWindRegion = function createWindRegionFunc() {
     let drawWind = true;
     const gfx = new Phaser.GameObjects.Graphics(store.ui.scene);
 
-    const maxWindStrength = 0.5;
+    const maxWindStrength = 0.05;
     const windForce = new Vector(0, (getRandomInt(0, maxWindStrength * 100) - maxWindStrength * 50) / 100);
 
     function __constructor() {
@@ -45,7 +45,7 @@ const createWindRegion = function createWindRegionFunc() {
         const arrowYOffset = downForce ? -(state.getHeight() / 5) : state.getHeight() / 5;
 
         gfx.clear();
-        gfx.lineStyle(Math.max(1, windForce.squaredLength() / 5), 0xff0000, 1);
+        gfx.lineStyle(Math.max(1, windForce.squaredLength() / 5), downForce ? 0x0000ff : 0xff0000, 1);
         gfx.beginPath();
         gfx.moveTo(startXPos, startYPos);
         gfx.lineTo(startXPos, endYPos);

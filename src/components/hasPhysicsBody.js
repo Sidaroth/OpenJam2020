@@ -41,7 +41,7 @@ const hasPhysicsBody = function hasPhysicsBodyFunc(state) {
 
     return {
         // props
-        mass: 1,
+        mass: 20,
         velocity: new Vector(),
         acceleration: new Vector(),
         degCoeff: 0.1,

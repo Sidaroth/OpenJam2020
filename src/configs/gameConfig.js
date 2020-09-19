@@ -47,7 +47,7 @@ export default {
             stroke: '#000000',
         },
     },
-    MAX_SEED_VELOCITY: 4,
+    MAX_SEED_VELOCITY: 0.75,
     BUTTON: {
         DEFAULT_SIZE: {
             w: 350,

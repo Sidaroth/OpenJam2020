@@ -21,6 +21,7 @@ const CreditsScene = function CreditsSceneFunc() {
                 gameConfig.GAME.VIEWHEIGHT / 2,
                 spriteConfig.MENU_BACKGROUND.KEY,
             );
+            creditBackground.setDisplaySize(gameConfig.GAME.VIEWWIDTH, gameConfig.GAME.VIEWHEIGHT);
         }
         if (!creditText) {
             creditText = state.addText(gameConfig.GAME.VIEWWIDTH / 2, gameConfig.GAME.VIEWHEIGHT / 3, 'Credits:\nSidaroth\nGarlov\nKjetilgr', gameConfig.TEXT_STYLES.DEFAULT);
