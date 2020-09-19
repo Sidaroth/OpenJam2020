@@ -6,26 +6,32 @@ import canEmit from 'components/events/canEmit';
 import Background from './Background';
 import createSeed from 'entities/createSeed';
 import store from 'root/store';
+import createTree from 'entities/createTree';
 
 const Level1 = function Level1Func() {
     const state = {};
+
     let background;
     let seed;
+    let tree;
 
     function init() {
         background = Background();
         state.addScene(gameConfig.SCENES.BACKGROUND, background.scene, true);
         state.sceneManager.sendToBack(gameConfig.SCENES.BACKGROUND);
         store.currentLevel = state;
+        store.speed = 0.25;
     }
 
     // hook into phasers scene lifecycle.
     function create() {
         seed = createSeed();
+        tree = createTree();
     }
 
     function update(time) {
         seed.update(time.delta);
+        tree.update(time);
         return time;
     }
 

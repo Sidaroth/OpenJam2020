@@ -27,4 +27,20 @@ export default {
         KEY: 'menu_background',
         PATH: 'https://cdn.sidaroth.no/openjam2020/flowerBG.jpg',
     },
+    TREE_1: {
+        KEY: 'tree_1',
+        PATH: 'assets/images/trees/1.png',
+    },
+    TREE_2: {
+        KEY: 'tree_2',
+        PATH: 'assets/images/trees/2.png',
+    },
+    TREE_3: {
+        KEY: 'tree_3',
+        PATH: 'assets/images/trees/3.png',
+    },
+    TREE_4: {
+        KEY: 'tree_4',
+        PATH: 'assets/images/trees/4.png',
+    },
 };

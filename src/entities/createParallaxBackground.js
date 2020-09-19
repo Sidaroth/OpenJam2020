@@ -4,11 +4,11 @@ import createState from 'utils/createState';
 import Phaser from 'phaser';
 import isGameEntity from 'components/entities/isGameEntity';
 import getRandomInt from 'utils/math/getRandomInt';
+import store from 'root/store';
 
 const createParallaxBackground = function createParallaxBackgroundFunc(parentScene) {
     const state = {};
     const tileSize = 64;
-    const speed = 0.25;
 
     const TILES = {
         0: spriteConfig.BACKGROUND_TILE_1.KEY,
@@ -53,7 +53,7 @@ const createParallaxBackground = function createParallaxBackgroundFunc(parentSce
                     }, null);
                     tile.setPosition(rightMostTile.x + tileSize, tile.y);
                 }
-                tile.setPosition(tile.x - speed * time.delta, tile.y);
+                tile.setPosition(tile.x - store.speed * time.delta, tile.y);
             });
         });
 
