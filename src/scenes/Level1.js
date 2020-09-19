@@ -14,7 +14,8 @@ const Level1 = function Level1Func() {
 
     function init() {
         background = Background();
-        // state.addScene(gameConfig.SCENES.BACKGROUND, background.scene, true);
+        state.addScene(gameConfig.SCENES.BACKGROUND, background.scene, true);
+        state.sceneManager.sendToBack(gameConfig.SCENES.BACKGROUND);
     }
 
     // hook into phasers scene lifecycle.
