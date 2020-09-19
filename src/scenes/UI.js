@@ -63,14 +63,13 @@ const UI = function UIFunc() {
         // setupPerformanceStats();
 
         if (!currentLevelText) {
-            currentLevelText = state.addText(20, 20, 'Current level', gameConfig.TEXT_STYLES.UI_TEXT);
+            currentLevelText = state.addText(gameConfig.UI_DEFAULT.padding.x, gameConfig.UI_DEFAULT.padding.y, 'Current level', gameConfig.TEXT_STYLES.UI_TEXT);
             currentLevelText.visible = false;
         }
         if (!currentLifetimeText) {
-            currentLifetimeText = state.addText(20, 50, '', gameConfig.TEXT_STYLES.UI_TEXT)
+            currentLifetimeText = state.addText(currentLevelText.x, currentLevelText.y + currentLevelText.height + 10, '', gameConfig.TEXT_STYLES.UI_TEXT)
             currentLifetimeText.visible = false;
         }
-
     }
 
     function destroy() {

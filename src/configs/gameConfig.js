@@ -41,10 +41,11 @@ export default {
             strokeThickness: 4,
         },
         UI_TEXT: {
-            font: '32px Arial',
+            font: '46px Arial',
             fill: '#eeeeee',
             align: 'center',
             stroke: '#000000',
+            strokeThickness: 4,
         },
     },
     MAX_SEED_VELOCITY: 0.75,
@@ -56,6 +57,10 @@ export default {
     },
     UI_DEFAULT: {
         tint: 0xaaaaaa,
+        padding: {
+            x: 20,
+            y: 20,
+        },
     },
     AUDIO: {
         musicKeys: ['bgScore'],

@@ -11,7 +11,7 @@ import store from 'root/store';
 import hasLifetime from 'components/entities/hasLifetime';
 import hasCollider from 'components/entities/hasCollider';
 
-const createSeed = function createPlayerFunc() {
+const createSeed = function createSeedFunc() {
     const state = {};
 
     function __constructor() {
@@ -20,11 +20,21 @@ const createSeed = function createPlayerFunc() {
         state.setPosition({ x: gameConfig.GAME.VIEWWIDTH / 4, y: gameConfig.GAME.VIEWHEIGHT / 2 });
     }
 
+    function update(time) {
+        let rotationSpeed = state.velocity.getLength();
+        if (state.velocity.y < 0) {
+            rotationSpeed *= -1;
+        }
+        state.setRotation(rotationSpeed * 50);
+        return time;
+    }
+
     const localState = {
         __constructor,
+        update,
     };
 
-    return createState('Player', state, {
+    return createState('Seed', state, {
         localState,
         isGameEntity: isGameEntity(state),
         hasPosition: hasPosition(state),

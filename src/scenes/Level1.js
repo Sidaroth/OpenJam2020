@@ -59,7 +59,8 @@ const Level1 = function Level1Func() {
         timeSinceLastUpdate += time.delta;
         if (timeSinceLastUpdate >= lifetimeUpdateThreshold) {
             const timeInSeconds = seed.getLifetime() / 1000;
-            store.ui.updateLifetimeText(timeInSeconds.toFixed(2));
+            store.ui.updateLifetimeText(timeInSeconds.toFixed(1));
+            timeSinceLastUpdate = 0;
         }
     }
 
