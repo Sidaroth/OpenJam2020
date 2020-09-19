@@ -17,8 +17,8 @@ const Level1 = function Level1Func() {
     let treeManager;
     let timeSinceLastUpdate = Infinity;
 
-    const widthRegions = 15;
-    const heightRegions = 8;
+    const widthRegions = 10;
+    const heightRegions = 4;
     const regions = [];
     const levelName = 'Level 1';
     const lifetimeUpdateThreshold = 100;

@@ -55,16 +55,16 @@ const Game = function GameFunc() {
     function init() {
         // After assets are loaded.
 
-        // Swap these for fast entry.
-        openMenu();
-        // startGame();
-
         UIContainer = UI();
         state.addScene(gameConfig.SCENES.UI, UIContainer.scene, true);
 
         audioManager = AudioManager(UIContainer.scene);
         store.audioManager = audioManager;
         store.ui = UIContainer;
+
+        // Swap these for fast entry.
+        // openMenu();
+        startGame();
     }
 
     function create() {
