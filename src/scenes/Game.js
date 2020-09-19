@@ -64,6 +64,7 @@ const Game = function GameFunc() {
 
         audioManager = AudioManager(UIContainer.scene);
         store.audioManager = audioManager;
+        store.ui = UIContainer;
     }
 
     function create() {

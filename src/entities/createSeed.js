@@ -15,7 +15,7 @@ const createSeed = function createPlayerFunc() {
     function __constructor() {
         state.createSpriteFromKey(store.currentLevel.scene, spriteConfig.SEED.KEY);
         state.setScale(0.15);
-        state.setPosition({ x: gameConfig.GAME.VIEWWIDTH / 2, y: gameConfig.GAME.VIEWHEIGHT / 2 });
+        state.setPosition({ x: gameConfig.GAME.VIEWWIDTH / 4, y: gameConfig.GAME.VIEWHEIGHT / 2 });
     }
 
     const localState = {
