@@ -19,6 +19,10 @@ export default {
         KEY: 'background_tile_1',
         PATH: 'assets/images/background/tile_1.png',
     },
+    BACKGROUND_TILE_2: {
+        KEY: 'background_tile_2',
+        PATH: 'assets/images/background/tile_2.png',
+    },
     MENU_BACKGROUND: {
         KEY: 'menu_background',
         PATH: 'https://cdn.sidaroth.no/openjam2020/flowerBG.jpg',
