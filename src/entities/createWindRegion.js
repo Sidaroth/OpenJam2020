@@ -6,6 +6,7 @@ import Vector from 'utils/math/Vector';
 import * as Phaser from 'phaser';
 import getRandomInt from 'utils/math/getRandomInt';
 import isGameEntity from 'components/entities/isGameEntity';
+import gameConfig from 'configs/gameConfig';
 
 /**
  * Wind Region that applies a wind force to any susceptible entities wihtin it.
@@ -16,7 +17,7 @@ const createWindRegion = function createWindRegionFunc() {
     let drawWind = true;
     const gfx = new Phaser.GameObjects.Graphics(store.ui.scene);
 
-    const maxWindStrength = 2;
+    const maxWindStrength = 0.5;
     const windForce = new Vector(0, (getRandomInt(0, maxWindStrength * 100) - maxWindStrength * 50) / 100);
 
     function __constructor() {
@@ -54,7 +55,22 @@ const createWindRegion = function createWindRegionFunc() {
         gfx.strokePath();
     }
 
+    /**
+     * Moves the region to the "back of the line" for parallaxing.
+     */
+    function moveToBack() {
+        state.setPosition({ x: gameConfig.GAME.VIEWWIDTH, y: state.getY() });
+    }
+
     function update(time) {
+        state.setPosition({
+            x: state.getX() - store.speed * time.delta,
+            y: state.getY(),
+        });
+
+        // We're entirely off the screen, move to back.
+        if (state.getX() < -state.getWidth()) state.moveToBack();
+
         if (drawWind) drawWindRegion();
         if (isWithinRegion(store.seed)) {
             store.seed.applyForce(windForce);
@@ -68,6 +84,7 @@ const createWindRegion = function createWindRegionFunc() {
 
     const localState = {
         __constructor,
+        moveToBack,
         update,
         setDrawWind,
     };

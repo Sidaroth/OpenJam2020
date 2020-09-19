@@ -17,8 +17,8 @@ const Level1 = function Level1Func() {
     let treeManager;
     let timeSinceLastUpdate = Infinity;
 
-    const widthRegions = 4;
-    const heightRegions = 4;
+    const widthRegions = 5;
+    const heightRegions = 5;
     const regions = [];
     const levelName = 'Level 1';
     const lifetimeUpdateThreshold = 100;
@@ -45,6 +45,12 @@ const Level1 = function Level1Func() {
                 region.setSize({ w: gameConfig.GAME.VIEWWIDTH / widthRegions, h: gameConfig.GAME.VIEWHEIGHT / heightRegions });
                 regions.push(region);
             }
+            // Lazy extra region per row. TL;DR We put 1 extra wind region outside the camera view so we can parallax them cleanly.
+            const region = createWindRegion();
+            region.setSize({ w: gameConfig.GAME.VIEWWIDTH / widthRegions, h: gameConfig.GAME.VIEWHEIGHT / heightRegions });
+            region.setPosition({ x: 0, y: i * gameConfig.GAME.VIEWHEIGHT / heightRegions });
+            region.moveToBack();
+            regions.push(region);
         }
         store.ui.setCurrentLevelText(levelName);
     }
