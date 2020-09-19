@@ -56,6 +56,14 @@ const hasSprite = function hasSpriteFunc(state) {
         sprite.setScale(sx, sy);
     }
 
+    function getScaleX() {
+        return sprite.scaleX;
+    }
+
+    function getScaleY() {
+        return sprite.scaleY;
+    }
+
     function setFlipX(value) {
         sprite.setFlipX(value);
     }
@@ -103,6 +111,8 @@ const hasSprite = function hasSpriteFunc(state) {
         setTexture,
         setPosition,
         setScale,
+        getScaleX,
+        getScaleY,
         destroy,
     };
 };

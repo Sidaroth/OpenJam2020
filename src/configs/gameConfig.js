@@ -4,6 +4,10 @@ export default {
         VIEWWIDTH: 1920,
         TITLE: 'Open Jam 2020',
     },
+    COLLIDERS: {
+        OBSTACLE: 'obstacle',
+        PLAYER: 'player',
+    },
     SCENES: {
         BOOT: 'game_boot',
         LOAD: 'game_load',

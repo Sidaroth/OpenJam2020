@@ -1,3 +1,4 @@
+import hasCollider from 'components/entities/hasCollider';
 import hasSprite from 'components/entities/hasSprite';
 import isGameEntity from 'components/entities/isGameEntity';
 import hasPosition from 'components/hasPosition';
@@ -24,7 +25,7 @@ const createTree = function createTreeFunc() {
     }
 
     function update(time) {
-        state.setPosition({ x: state.getX() - store.speed * time.delta, y: state.getY() });
+        state.setX(state.getX() - store.speed * time.delta);
         return time;
     }
 
@@ -39,7 +40,8 @@ const createTree = function createTreeFunc() {
         localState,
         isGameEntity: isGameEntity(state),
         hasSprite: hasSprite(state),
-        hasPosition: hasPosition(),
+        hasPosition: hasPosition(state),
+        hasCollider: hasCollider(state, gameConfig.COLLIDERS.OBSTACLE),
     });
 };
 
