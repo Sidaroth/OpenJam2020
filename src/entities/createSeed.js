@@ -4,23 +4,18 @@ import hasPosition from 'components/hasPosition';
 import createState from 'utils/createState';
 import hasAudio from 'components/hasAudio';
 import hasPhysicsBody from 'components/hasPhysicsBody';
+import hasSprite from 'components/entities/hasSprite';
 
-const createPlayer = function createPlayerFunc() {
-    // variables and functions here are private unless listed below in localState.
+const createSeed = function createPlayerFunc() {
     const state = {};
 
     function __constructor() {
     }
 
-    // functions and properties listed here will be public.
     const localState = {
-        // props
-        name: 'Player name',
-        // methods
         __constructor,
     };
 
-    // These are the substates, or components, that describe the functionality of the resulting object.
     return createState('Player', state, {
         localState,
         isGameEntity: isGameEntity(state),
@@ -28,7 +23,8 @@ const createPlayer = function createPlayerFunc() {
         hasAudio: hasAudio(state),
         canEmit: canEmit(state),
         hasPhysicsBody: hasPhysicsBody(state),
+        hasSprite: hasSprite(state),
     });
 };
 
-export default createPlayer;
+export default createSeed;

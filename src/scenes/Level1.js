@@ -4,18 +4,32 @@ import createState from 'utils/createState';
 import canListen from 'components/events/canListen';
 import canEmit from 'components/events/canEmit';
 import Background from './Background';
+import createSeed from 'entities/createSeed';
+import spriteConfig from 'configs/spriteConfig';
 
 const Level1 = function Level1Func() {
     const state = {};
     let background;
+    let seed;
 
     function init() {
         background = Background();
-        state.addScene(gameConfig.SCENES.BACKGROUND, background.scene, true);
+        // state.addScene(gameConfig.SCENES.BACKGROUND, background.scene, true);
     }
 
     // hook into phasers scene lifecycle.
     function create() {
+        seed = createSeed();
+        seed.createSpriteFromKey(state.scene, spriteConfig.SEED.KEY);
+        seed.setScale(0.15);
+        seed.setPosition({ x: gameConfig.GAME.VIEWWIDTH / 2, y: gameConfig.GAME.VIEWHEIGHT / 2 });
+
+        // TODO Fix Z-index for seed.
+    }
+
+    function update(time) {
+        seed.update(time.delta);
+        return time;
     }
 
     function destroy() {
@@ -29,6 +43,7 @@ const Level1 = function Level1Func() {
         // methods
         init,
         create,
+        update,
         destroy,
     };
 

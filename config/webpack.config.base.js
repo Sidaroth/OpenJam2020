@@ -82,7 +82,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: './index.ejs',
-            title: 'Boilerplate -- Change me',
+            title: 'Open Jam 2020 - Temp Title',
             meta: [{ name: 'robots', content: 'noindex,nofollow' }],
             appMountIds: ['game'],
             inject: false,

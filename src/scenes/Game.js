@@ -30,7 +30,7 @@ const Game = function GameFunc() {
     function startGame() {
         level1 = Level1();
         state.addScene(gameConfig.SCENES.LEVEL1, level1.scene, true);
-        state.removeScene(menu.scene);
+        if (menu) state.removeScene(menu.scene);
     }
 
     function openCredits() {
@@ -54,7 +54,11 @@ const Game = function GameFunc() {
 
     function init() {
         // After assets are loaded.
+
+        // Swap these for fast entry.
         openMenu();
+        // startGame();
+
         UIContainer = UI();
         state.addScene(gameConfig.SCENES.UI, UIContainer.scene, true);
 

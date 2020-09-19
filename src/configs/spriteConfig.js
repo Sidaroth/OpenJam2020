@@ -11,6 +11,10 @@ export default {
         KEY: 'speaker_off',
         PATH: 'assets/images/speaker-off.png',
     },
+    SEED: {
+        KEY: 'seed',
+        PATH: 'assets/images/lotus_7458.png',
+    },
     BACKGROUND_TILE_1: {
         KEY: 'background_tile_1',
         PATH: 'assets/images/background/tile_1.png',
