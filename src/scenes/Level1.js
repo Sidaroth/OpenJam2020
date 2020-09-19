@@ -27,6 +27,7 @@ const Level1 = function Level1Func() {
         background = Background();
         state.addScene(gameConfig.SCENES.BACKGROUND, background.scene, true);
         state.sceneManager.sendToBack(gameConfig.SCENES.BACKGROUND);
+        state.sceneManager.bringToTop(gameConfig.SCENES.UI);
         store.currentLevel = state;
         store.speed = 0.25;
     }
