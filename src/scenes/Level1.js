@@ -32,6 +32,17 @@ const Level1 = function Level1Func() {
         store.speed = 0.125;
     }
 
+    function addRegion(pos, size) {
+        const region = createWindRegion();
+        region.setSize(size);
+        region.setPosition(pos);
+        regions.push(region);
+
+        if (pos.y >= gameConfig.GAME.VIEWHEIGHT / 2) region.setWindforceY(-gameConfig.WIND.MAX_FORCE);
+
+        return region;
+    }
+
     // hook into phasers scene lifecycle.
     function create() {
         seed = createSeed();
@@ -40,17 +51,16 @@ const Level1 = function Level1Func() {
 
         for (let i = 0; i < heightRegions; i += 1) {
             for (let j = 0; j < widthRegions; j += 1) {
-                const region = createWindRegion();
-                region.setPosition({ x: j * gameConfig.GAME.VIEWWIDTH / widthRegions, y: i * gameConfig.GAME.VIEWHEIGHT / heightRegions });
-                region.setSize({ w: gameConfig.GAME.VIEWWIDTH / widthRegions, h: gameConfig.GAME.VIEWHEIGHT / heightRegions });
-                regions.push(region);
+                const pos = { x: j * gameConfig.GAME.VIEWWIDTH / widthRegions, y: i * gameConfig.GAME.VIEWHEIGHT / heightRegions };
+                const size = { w: gameConfig.GAME.VIEWWIDTH / widthRegions, h: gameConfig.GAME.VIEWHEIGHT / heightRegions };
+                addRegion(pos, size);
+
+                // Lazy extra region per row. TL;DR We put 1 extra wind region outside the camera view so we can parallax them cleanly.
+                if (j === widthRegions - 1) {
+                    const region = addRegion(pos, size);
+                    region.moveToBack();
+                }
             }
-            // Lazy extra region per row. TL;DR We put 1 extra wind region outside the camera view so we can parallax them cleanly.
-            const region = createWindRegion();
-            region.setSize({ w: gameConfig.GAME.VIEWWIDTH / widthRegions, h: gameConfig.GAME.VIEWHEIGHT / heightRegions });
-            region.setPosition({ x: 0, y: i * gameConfig.GAME.VIEWHEIGHT / heightRegions });
-            region.moveToBack();
-            regions.push(region);
         }
         store.ui.setCurrentLevelText(levelName);
     }

@@ -5,6 +5,7 @@ const store = {
     audioManager: undefined,
     ui: undefined,
     currentLevel: undefined,
+    mouse: undefined,
     colliders: [],
 };
 

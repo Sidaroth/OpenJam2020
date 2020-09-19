@@ -10,6 +10,7 @@ import MenuScene from 'scenes/Menu';
 import CreditsScene from 'scenes/Credits';
 import eventConfig from 'configs/eventConfig';
 import Level1 from './Level1';
+import createMouseInput from 'core/createMouse';
 
 /**
  * Responsible for delegating the various levels, holding the various core systems and such.
@@ -21,6 +22,8 @@ const Game = function GameFunc() {
     let credits;
     let menu;
     let level1;
+
+    const mouse = createMouseInput();
 
     function cameraSetup() {
         state.setViewport(0, 0, gameConfig.GAME.VIEWWIDTH, gameConfig.GAME.VIEWHEIGHT);
@@ -64,6 +67,7 @@ const Game = function GameFunc() {
 
         // Swap these for fast entry.
         // openMenu();
+        mouse.enable(state.scene);
         startGame();
     }
 
@@ -77,6 +81,7 @@ const Game = function GameFunc() {
     }
 
     function destroy() {
+        mouse.disable(state.scene);
         if (UIContainer) UIContainer.destroy();
         if (menu) menu.destroy();
         if (credits) credits.destroy();

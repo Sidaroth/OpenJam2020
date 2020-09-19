@@ -4,9 +4,10 @@ import store from 'root/store';
 import createState from 'utils/createState';
 import Vector from 'utils/math/Vector';
 import * as Phaser from 'phaser';
-import getRandomInt from 'utils/math/getRandomInt';
 import isGameEntity from 'components/entities/isGameEntity';
 import gameConfig from 'configs/gameConfig';
+import canListen from 'components/events/canListen';
+import eventConfig from 'configs/eventConfig';
 
 /**
  * Wind Region that applies a wind force to any susceptible entities wihtin it.
@@ -22,14 +23,23 @@ const createWindRegion = function createWindRegionFunc() {
 
     function __constructor() {
         store.ui.scene.add.existing(gfx);
+
+        state.listenGlobal(eventConfig.MOUSE.DOWN, (e) => {
+            if (state.isWithinRegion({ x: e.downX, y: e.downY })) {
+                windForce.y *= -1;
+            }
+        });
     }
 
-    function isWithinRegion(entity) {
-        const entityPos = entity.getPosition();
+    function isWithinRegion(pos) {
         const statePos = state.getPosition();
 
-        return entityPos.x >= statePos.x && entityPos.x < statePos.x + state.getWidth() &&
-            entityPos.y >= statePos.y && entityPos.y < statePos.y + state.getHeight();
+        return pos.x >= statePos.x && pos.x < statePos.x + state.getWidth() &&
+        pos.y >= statePos.y && pos.y < statePos.y + state.getHeight();
+    }
+
+    function setWindforceY(y) {
+        windForce.y = y;
     }
 
     function drawWindRegion() {
@@ -62,16 +72,6 @@ const createWindRegion = function createWindRegionFunc() {
         state.setPosition({ x: gameConfig.GAME.VIEWWIDTH, y: state.getY() });
     }
 
-    function setPosition(pos) {
-        if (pos.y >= gameConfig.GAME.VIEWHEIGHT / 2) {
-            windForce.y = -maxWindStrength;
-        } else {
-            windForce.y = maxWindStrength;
-        }
-
-        return pos;
-    }
-
     function update(time) {
         state.setPosition({
             x: state.getX() - store.speed * time.delta,
@@ -82,7 +82,7 @@ const createWindRegion = function createWindRegionFunc() {
         if (state.getX() < -state.getWidth()) state.moveToBack();
 
         if (drawWind) drawWindRegion();
-        if (isWithinRegion(store.seed)) {
+        if (isWithinRegion(store.seed.getPosition())) {
             const center = new Vector(state.getWidth() / 2, state.getHeight() / 2);
             const cornerToCenter = new Vector().dist(center);
             const distanceToCenter = store.seed.getPosition().dist(new Vector(state.getX() + state.getWidth() / 2, state.getY() + state.getHeight() / 2));
@@ -106,12 +106,14 @@ const createWindRegion = function createWindRegionFunc() {
         __constructor,
         moveToBack,
         update,
+        isWithinRegion,
         setDrawWind,
-        setPosition,
+        setWindforceY,
     };
 
     return createState('WindRegion', state, {
         localState,
+        canListen: canListen(state),
         isGameEntity: isGameEntity(state),
         hasPosition: hasPosition(state),
         hasSize: hasSize(state),

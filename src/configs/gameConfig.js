@@ -48,6 +48,9 @@ export default {
             strokeThickness: 4,
         },
     },
+    WIND: {
+        MAX_FORCE: 0.025,
+    },
     MAX_SEED_VELOCITY: 0.75,
     BUTTON: {
         DEFAULT_SIZE: {

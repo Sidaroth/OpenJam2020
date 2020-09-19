@@ -2,6 +2,10 @@ export default {
     GAME: {
         STARTED: 'game started',
     },
+    MOUSE: {
+        MOVE: 'mouse move',
+        DOWN: 'mouse down',
+    },
     BUTTON: {
         CLICK: 'button click',
     },
