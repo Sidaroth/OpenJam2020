@@ -1,6 +1,7 @@
 import hasCollider from 'components/entities/hasCollider';
 import hasSprite from 'components/entities/hasSprite';
 import isGameEntity from 'components/entities/isGameEntity';
+import canEmit from 'components/events/canEmit';
 import hasPosition from 'components/hasPosition';
 import gameConfig from 'configs/gameConfig';
 import spriteConfig from 'configs/spriteConfig';
@@ -39,6 +40,7 @@ const createTree = function createTreeFunc() {
     return createState('Tree', state, {
         localState,
         isGameEntity: isGameEntity(state),
+        canEmit: canEmit(state),
         hasSprite: hasSprite(state),
         hasPosition: hasPosition(state),
         hasCollider: hasCollider(state, gameConfig.COLLIDERS.OBSTACLE),

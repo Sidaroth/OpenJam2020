@@ -1,3 +1,4 @@
+import eventConfig from 'configs/eventConfig';
 import gameConfig from 'configs/gameConfig';
 import store from 'root/store';
 
@@ -16,6 +17,7 @@ const hasCollider = function hasColliderFunc(state, colliderType) {
                 const colliderPosition = collider.getPosition();
                 if (position.dist(colliderPosition) < colliderRadius + radius) {
                     console.log('dead');
+                    state.emitGlobal(eventConfig.COLLISION);
                 }
             });
         }

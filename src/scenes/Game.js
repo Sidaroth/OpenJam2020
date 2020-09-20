@@ -55,6 +55,10 @@ const Game = function GameFunc() {
         state.removeScene(credits.scene);
     }
 
+    function onPlayerDeath() {
+        console.log('player death');
+    }
+
     function init() {
         // After assets are loaded.
 
@@ -66,14 +70,15 @@ const Game = function GameFunc() {
         store.ui = UIContainer;
 
         // Swap these for fast entry.
-        // openMenu();
+        openMenu();
         mouse.enable(state.scene);
-        startGame();
+        // startGame();
     }
 
     function create() {
         audioManager.playMusic();
         cameraSetup();
+        state.listenGlobal(eventConfig.COLLISION, onPlayerDeath);
     }
 
     function update(time) {
