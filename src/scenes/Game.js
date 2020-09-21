@@ -33,6 +33,7 @@ const Game = function GameFunc() {
     function startGame() {
         level1 = Level1();
         state.addScene(gameConfig.SCENES.LEVEL1, level1.scene, true);
+        UIContainer.hideScore();
         if (menu) menu.destroy();
     }
 
@@ -40,6 +41,7 @@ const Game = function GameFunc() {
         credits = CreditsScene();
         state.addScene(gameConfig.SCENES.CREDITS, credits.scene, true);
         state.listenOn(credits, eventConfig.MENU.CREDITS_CLOSE, state.closeCredits);
+        UIContainer.hideScore();
         if (menu) menu.destroy();
     }
 
@@ -48,6 +50,7 @@ const Game = function GameFunc() {
         state.addScene(gameConfig.SCENES.MENU, menu.scene, true);
         state.listenOn(menu, eventConfig.MENU.GAME_START, startGame);
         state.listenOn(menu, eventConfig.MENU.CREDITS_OPEN, openCredits);
+        UIContainer.showScore();
     }
 
     function closeCredits() {

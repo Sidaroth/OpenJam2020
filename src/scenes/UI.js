@@ -15,6 +15,7 @@ const UI = function UIFunc() {
     let stats;
     let currentLevelText;
     let currentLifetimeText;
+    let previousGameScore;
 
     // function setupDatGui() {
     //     gui = new dat.GUI();
@@ -56,11 +57,23 @@ const UI = function UIFunc() {
     function updateLifetimeText(text) {
         currentLifetimeText.text = text;
         currentLifetimeText.visible = true;
+        previousGameScore.text = `Score previous game: ${text}`;
     }
 
     function hideLevelText() {
         currentLifetimeText.visible = false;
         currentLevelText.visible = false;
+    }
+
+    function showScore() {
+        state.sceneManager.bringToTop(gameConfig.SCENES.UI);
+        previousGameScore.x = gameConfig.GAME.VIEWWIDTH / 2 - previousGameScore.width / 2;
+        previousGameScore.y = gameConfig.GAME.VIEWHEIGHT * 0.75 - previousGameScore.height / 2;
+        previousGameScore.visible = true;
+    }
+
+    function hideScore() {
+        previousGameScore.visible = false;
     }
 
     function create() {
@@ -74,6 +87,10 @@ const UI = function UIFunc() {
         if (!currentLifetimeText) {
             currentLifetimeText = state.addText(currentLevelText.x, currentLevelText.y + currentLevelText.height + 10, '', gameConfig.TEXT_STYLES.UI_TEXT);
             currentLifetimeText.visible = false;
+        }
+        if (!previousGameScore) {
+            previousGameScore = state.addText(0, 0, '', gameConfig.TEXT_STYLES.UI_TEXT);
+            previousGameScore.visible = false;
         }
     }
 
@@ -89,6 +106,8 @@ const UI = function UIFunc() {
         updateLifetimeText,
         hideLevelText,
         create,
+        showScore,
+        hideScore,
         destroy,
     };
 
