@@ -2,7 +2,7 @@ export default {
     GAME: {
         VIEWHEIGHT: 1080,
         VIEWWIDTH: 1920,
-        TITLE: 'Open Jam 2020',
+        TITLE: 'Seedling',
     },
     COLLIDERS: {
         OBSTACLE: 'obstacle',

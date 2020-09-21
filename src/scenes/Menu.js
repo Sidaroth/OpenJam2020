@@ -25,7 +25,7 @@ const MenuScene = function MenuSceneFunc() {
             menuBackground.setDisplaySize(gameConfig.GAME.VIEWWIDTH, gameConfig.GAME.VIEWHEIGHT);
         }
         if (!titleText) {
-            titleText = state.addText(gameConfig.GAME.VIEWWIDTH / 2, 20, 'OpenJam 2020', gameConfig.TEXT_STYLES.TITLE_TEXT);
+            titleText = state.addText(gameConfig.GAME.VIEWWIDTH / 2, 20, gameConfig.GAME.TITLE, gameConfig.TEXT_STYLES.TITLE_TEXT);
             titleText.x -= titleText.width / 2;
         }
         if (!startGame) {
