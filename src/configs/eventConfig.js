@@ -14,4 +14,5 @@ export default {
         CREDITS_OPEN: 'menu credits open',
         CREDITS_CLOSE: 'menu credits close',
     },
+    COLLISION: 'collision',
 };

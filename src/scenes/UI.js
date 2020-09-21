@@ -67,7 +67,7 @@ const UI = function UIFunc() {
             currentLevelText.visible = false;
         }
         if (!currentLifetimeText) {
-            currentLifetimeText = state.addText(currentLevelText.x, currentLevelText.y + currentLevelText.height + 10, '', gameConfig.TEXT_STYLES.UI_TEXT)
+            currentLifetimeText = state.addText(currentLevelText.x, currentLevelText.y + currentLevelText.height + 10, '', gameConfig.TEXT_STYLES.UI_TEXT);
             currentLifetimeText.visible = false;
         }
     }

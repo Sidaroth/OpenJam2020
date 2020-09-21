@@ -42,7 +42,7 @@ const MenuScene = function MenuSceneFunc() {
         if (!credits) {
             credits = createButton(state.scene, {
                 size: gameConfig.BUTTON.DEFAULT_SIZE,
-                position: { x: gameConfig.GAME.VIEWWIDTH / 2, y: gameConfig.GAME.VIEWHEIGHT / 2 + 150 },
+                position: { x: gameConfig.GAME.VIEWWIDTH / 2, y: gameConfig.GAME.VIEWHEIGHT / 2 + 125 },
                 text: 'Credits',
             });
             state.listenOn(credits, eventConfig.BUTTON.CLICK, () => {
