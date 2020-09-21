@@ -93,7 +93,13 @@ const createWindRegion = function createWindRegionFunc() {
             // console.log(windForceStrength);
             // windForce.y = windForceStrength;
 
-            store.seed.applyForce(windForce);
+            const force = windForce.clone();
+            if (store.seed.velocity.y > 0.05 && windForce.y < 0) {
+                force.y *= 4;
+            } else if (store.seed.velocity.y < -0.05 && windForce.y > 0) {
+                force.y *= 4;
+            }
+            store.seed.applyForce(force);
         }
         return time;
     }

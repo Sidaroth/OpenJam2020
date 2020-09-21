@@ -18,7 +18,7 @@ const Level1 = function Level1Func() {
     let timeSinceLastUpdate = Infinity;
 
     const widthRegions = 10;
-    const heightRegions = 4;
+    const heightRegions = 6;
     const regions = [];
     const levelName = 'Level 1';
     const lifetimeUpdateThreshold = 100;
