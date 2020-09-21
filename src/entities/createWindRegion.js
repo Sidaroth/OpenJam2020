@@ -16,7 +16,7 @@ const createWindRegion = function createWindRegionFunc() {
     const state = {};
 
     let drawWind = true;
-    const gfx = new Phaser.GameObjects.Graphics(store.ui.scene);
+    let gfx = new Phaser.GameObjects.Graphics(store.ui.scene);
 
     const maxWindStrength = 0.025;
     const windForce = new Vector(0, maxWindStrength);
@@ -108,6 +108,13 @@ const createWindRegion = function createWindRegionFunc() {
         drawWind = val;
     }
 
+    function destroy() {
+        if (gfx) {
+            gfx.destroy();
+            gfx = null;
+        }
+    }
+
     const localState = {
         __constructor,
         moveToBack,
@@ -115,6 +122,7 @@ const createWindRegion = function createWindRegionFunc() {
         isWithinRegion,
         setDrawWind,
         setWindforceY,
+        destroy,
     };
 
     return createState('WindRegion', state, {

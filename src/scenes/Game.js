@@ -33,14 +33,14 @@ const Game = function GameFunc() {
     function startGame() {
         level1 = Level1();
         state.addScene(gameConfig.SCENES.LEVEL1, level1.scene, true);
-        if (menu) state.removeScene(menu.scene);
+        if (menu) menu.destroy();
     }
 
     function openCredits() {
         credits = CreditsScene();
         state.addScene(gameConfig.SCENES.CREDITS, credits.scene, true);
         state.listenOn(credits, eventConfig.MENU.CREDITS_CLOSE, state.closeCredits);
-        state.removeScene(menu.scene);
+        if (menu) menu.destroy();
     }
 
     function openMenu() {
@@ -51,12 +51,15 @@ const Game = function GameFunc() {
     }
 
     function closeCredits() {
+        if (credits) credits.destroy();
         openMenu();
-        state.removeScene(credits.scene);
     }
 
     function onPlayerDeath() {
-        console.log('player death');
+        level1.destroy();
+        level1 = null;
+
+        openMenu();
     }
 
     function init() {

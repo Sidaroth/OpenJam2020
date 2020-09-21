@@ -43,7 +43,7 @@ const createSeed = function createSeedFunc() {
             rotationSpeed *= -1;
         }
 
-        renderVelocity();
+        // renderVelocity();
 
         state.setRotation(rotationSpeed * 50);
         return time;

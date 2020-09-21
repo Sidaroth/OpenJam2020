@@ -16,7 +16,6 @@ const MenuScene = function MenuSceneFunc() {
 
     // hook into phasers scene lifecycle.
     function create() {
-        console.log('Hei på deg');
         if (!menuBackground) {
             menuBackground = state.addImage(
                 gameConfig.GAME.VIEWWIDTH / 2,

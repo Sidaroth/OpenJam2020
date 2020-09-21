@@ -58,6 +58,11 @@ const UI = function UIFunc() {
         currentLifetimeText.visible = true;
     }
 
+    function hideLevelText() {
+        currentLifetimeText.visible = false;
+        currentLevelText.visible = false;
+    }
+
     function create() {
         // setupDatGui();
         // setupPerformanceStats();
@@ -82,6 +87,7 @@ const UI = function UIFunc() {
         // methods
         setCurrentLevelText,
         updateLifetimeText,
+        hideLevelText,
         create,
         destroy,
     };

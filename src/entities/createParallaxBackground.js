@@ -18,7 +18,7 @@ const createParallaxBackground = function createParallaxBackgroundFunc(parentSce
     /**
      * @type {Array<Array<Phaser.GameObjects.Sprite>>}
      */
-    const tiles = [];
+    let tiles = [];
 
     function __constructor() {
         const yCount = parseInt(gameConfig.GAME.VIEWHEIGHT / tileSize + 1);
@@ -60,12 +60,22 @@ const createParallaxBackground = function createParallaxBackgroundFunc(parentSce
         return time;
     }
 
+    function destroy() {
+        tiles.forEach((tileRow) => {
+            tileRow.forEach((tile, index) => {
+                tile.destroy();
+            });
+        });
+        tiles = [];
+    }
+
     // functions and properties listed here will be public.
     const localState = {
         // props
         // methods
         __constructor,
         update,
+        destroy,
     };
 
     return createState('ParallaxBackground', state, {

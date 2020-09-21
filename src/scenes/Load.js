@@ -49,7 +49,6 @@ const LoadScene = function LoadSceneFunc() {
 
         state.scene.load.on('complete', () => {
             state.sceneManager.start(gameConfig.SCENES.GAME);
-            state.scene.destroy();
         });
 
         loadAssets();

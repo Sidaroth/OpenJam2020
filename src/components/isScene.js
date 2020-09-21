@@ -9,7 +9,7 @@ const isScene = function isSceneFunc(state, sceneKey) {
         throw new Error('Missing sceneKey');
     }
 
-    const scene = new Phaser.Scene(sceneKey);
+    let scene = new Phaser.Scene(sceneKey);
 
     // ------ Hook into phasers scene lifecycle -------
     scene.init = () => {
@@ -30,17 +30,14 @@ const isScene = function isSceneFunc(state, sceneKey) {
         if (state.update) state.update({ runTime: time, delta });
     };
 
-    scene.destroy = () => {
-        if (state.destroy) state.destroy();
-    };
     // --------------------------------------
 
     function addScene(key, sceneRef, autoStart) {
         return state.sceneManager.add(key, sceneRef, autoStart);
     }
 
-    function removeScene(sceneRef) {
-        state.sceneManager.remove(sceneRef);
+    function removeScene(key) {
+        state.sceneManager.remove(key);
     }
 
     function addImage(x, y, key, frame = undefined) {
@@ -56,6 +53,11 @@ const isScene = function isSceneFunc(state, sceneKey) {
         if (child) child.destroy();
     }
 
+    function destroy() {
+        state.sceneManager.remove(sceneKey);
+        scene = null;
+    }
+
     return {
         sceneManager: undefined,
         scene,
@@ -64,6 +66,7 @@ const isScene = function isSceneFunc(state, sceneKey) {
         addImage,
         addText,
         removeChild,
+        destroy,
     };
 };
 

@@ -19,7 +19,7 @@ const Level1 = function Level1Func() {
 
     const widthRegions = 10;
     const heightRegions = 6;
-    const regions = [];
+    let regions = [];
     const levelName = 'Level 1';
     const lifetimeUpdateThreshold = 100;
 
@@ -75,20 +75,39 @@ const Level1 = function Level1Func() {
     }
 
     function update(time) {
-        seed.update(time);
-        updateLifetime(time);
-        treeManager.update(time);
-        regions.forEach(region => region.update(time));
+        if (seed) {
+            updateLifetime(time);
+            treeManager.update(time);
+            regions.forEach(region => region.update(time));
+            seed.update(time);
+        }
         return time;
     }
 
     function destroy() {
+        if (seed) {
+            seed.destroy();
+            seed = null;
+        }
+
         if (background) {
             background.destroy();
             background = null;
         }
 
+        if (treeManager) {
+            treeManager.destroy();
+            treeManager = null;
+        }
+
+        regions.forEach((region) => {
+            region.destroy();
+        });
+        regions = [];
+
+        store.speed = 0;
         store.currentLevel = null;
+        store.ui.hideLevelText();
     }
 
     const localState = {

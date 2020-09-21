@@ -16,7 +16,9 @@ const Background = function BackgroundFunc() {
     }
 
     function update(time) {
-        parallaxBackground.update(time);
+        if (parallaxBackground) {
+            parallaxBackground.update(time);
+        }
         return time;
     }
 
