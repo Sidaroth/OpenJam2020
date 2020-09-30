@@ -25,3 +25,9 @@ Documentation for Phaser: https://photonstorm.github.io/phaser3-docs/index.html
 Pull requests with features that you've made are welcome. You may also create issues regarding any issues you find, or missing features you think we need to add.
 
 ### Attributions
+Background Soundtrack is Full of Stars, by Philipp Weigl (http://freemusicarchive.org/music/Philipp_Weigl/Sound-trax/Philipp_Weigl_-_Full_of_Stars) Used under creative commons license CC-BY 4.0
+
+Menu Background "Designed by pikisuperstar / Freepik" (https://www.freepik.com/)
+
+
+https://creativecommons.org/licenses/by/4.0/legalcode
